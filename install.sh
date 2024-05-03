@@ -4,17 +4,8 @@
 cd ~
 
 # Create a hidden directory named .cpp_gen
-git clone https://github.com/goncalo1021pt/cpp_gen.git .cpp_gen
+git clone https://github.com/goncalo1021pt/cpp_gen.git cpp_gen
 
-# Add .cpp_gen to the PATH environment variable
-if [ -f ~/.bashrc ] && ! grep -q 'export PATH=$PATH:$HOME/.cpp_gen' ~/.bashrc; then
-    echo 'export PATH=$PATH:$HOME/.cpp_gen' >> ~/.bashrc
-    source ~/.bashrc
-fi
-
-if [ -f ~/.zshrc ] && ! grep -q 'export PATH=$PATH:$HOME/.cpp_gen' ~/.zshrc; then
-    echo 'export PATH=$PATH:$HOME/.cpp_gen' >> ~/.zshrc
-    source ~/.zshrc
-fi
+mv cpp_gen/cpp_gen .local/bin
 
 rm -f .cpp_gen/install.sh
