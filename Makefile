@@ -1,4 +1,4 @@
-NAME = teste cpp_gen 
+NAME = cpp_gen teste cpp_gen 
 
 SRCS = $(wildcard srcs/*.cpp)
 

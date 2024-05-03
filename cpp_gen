@@ -18,55 +18,61 @@ touch srcs/main.cpp
 for CLASS_NAME in "$@"
 do
     # Create .h file
-    echo "#ifndef ${CLASS_NAME}_H" > includes/$CLASS_NAME.h
-    echo "# define ${CLASS_NAME}_H" >> includes/$CLASS_NAME.h
-    echo "" >> includes/$CLASS_NAME.h
-    echo "# include <$CLASS_NAME.hpp>" >> includes/$CLASS_NAME.h
-    echo "" >> includes/$CLASS_NAME.h
-    echo "#endif" >> includes/$CLASS_NAME.h
+	echo $CLASS_NAME
+	cat << EOF > includes/$CLASS_NAME.h
+#ifndef ${CLASS_NAME}_H
+# define ${CLASS_NAME}_H
 
+# include <$CLASS_NAME.hpp>
+
+#endif
+EOF
     # Create .hpp file
-    echo "#ifndef ${CLASS_NAME}_HPP" > includes/$CLASS_NAME.hpp
-    echo "# define ${CLASS_NAME}_HPP" >> includes/$CLASS_NAME.hpp
-    echo "" >> includes/$CLASS_NAME.hpp
-    echo "# include <iostream>" >> includes/$CLASS_NAME.hpp
-    echo "" >> includes/$CLASS_NAME.hpp
-    echo "typedef std::string t_string;" >> includes/$CLASS_NAME.hpp
-    echo "" >> includes/$CLASS_NAME.hpp
-    echo "class $CLASS_NAME {" >> includes/$CLASS_NAME.hpp
-    echo "	private:" >> includes/$CLASS_NAME.hpp
-    echo "" >> includes/$CLASS_NAME.hpp
-    echo "	public:" >> includes/$CLASS_NAME.hpp
-    echo "		$CLASS_NAME();" >> includes/$CLASS_NAME.hpp
-    echo "		~$CLASS_NAME();" >> includes/$CLASS_NAME.hpp
-    echo "		$CLASS_NAME(const $CLASS_NAME& other);" >> includes/$CLASS_NAME.hpp
-    echo "		$CLASS_NAME& operator=(const $CLASS_NAME& other);" >> includes/$CLASS_NAME.hpp
-    echo "};" >> includes/$CLASS_NAME.hpp
-    echo "" >> includes/$CLASS_NAME.hpp
-    echo "#endif" >> includes/$CLASS_NAME.hpp
+	cat << EOF > includes/$CLASS_NAME.hpp
+#ifndef ${CLASS_NAME}_HPP
+# define ${CLASS_NAME}_HPP
 
+# include <iostream>
+
+typedef std::string t_string;
+
+class $CLASS_NAME {
+    private:
+
+    public:
+        $CLASS_NAME();
+        ~$CLASS_NAME();
+        $CLASS_NAME(const $CLASS_NAME& other);
+        $CLASS_NAME& operator=(const $CLASS_NAME& other);
+};
+#endif
+EOF
     # Create .cpp file
-    echo "#include <$CLASS_NAME.h>" > srcs/$CLASS_NAME.cpp
-    echo "" >> srcs/$CLASS_NAME.cpp
-    echo "$CLASS_NAME::$CLASS_NAME() {}" >> srcs/$CLASS_NAME.cpp
-	echo "" >> srcs/$CLASS_NAME.cpp
-	echo "$CLASS_NAME::~$CLASS_NAME() {}" >> srcs/$CLASS_NAME.cpp
-	echo "" >> srcs/$CLASS_NAME.cpp
-	echo "$CLASS_NAME::$CLASS_NAME(const $CLASS_NAME& other) {" >> srcs/$CLASS_NAME.cpp
-	echo "	*this = other;" >> srcs/$CLASS_NAME.cpp
-	echo "}" >> srcs/$CLASS_NAME.cpp
-	echo "" >> srcs/$CLASS_NAME.cpp
-	echo "$CLASS_NAME& $CLASS_NAME::operator=(const $CLASS_NAME& other) {" >> srcs/$CLASS_NAME.cpp
-	echo "	(void)other;" >> srcs/$CLASS_NAME.cpp
-	echo "	return *this;" >> srcs/$CLASS_NAME.cpp
-	echo "}" >> srcs/$CLASS_NAME.cpp
+	cat << EOF > srcs/$CLASS_NAME.cpp
+#include <$CLASS_NAME.h>
+
+$CLASS_NAME::$CLASS_NAME() {}
+
+$CLASS_NAME::~$CLASS_NAME() {}
+
+$CLASS_NAME::$CLASS_NAME(const $CLASS_NAME& other) {
+	*this = other;
+}
+
+$CLASS_NAME& $CLASS_NAME::operator=(const $CLASS_NAME& other) {
+	(void)other;
+	return *this;
+}
+EOF
 
 	# Add includes to main.cpp
-
 	echo "#include <$CLASS_NAME.h>" >> srcs/main.cpp
 done
 
-echo "" >> srcs/main.cpp
-echo "int main() {" >> srcs/main.cpp
-echo "return 0;" >> srcs/main.cpp
-echo "}" >> srcs/main.cpp
+# Add main function to main.cpp
+cat << EOF >> srcs/main.cpp
+
+int main() {
+	return 0;
+}
+EOF
