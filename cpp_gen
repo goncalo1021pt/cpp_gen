@@ -1,8 +1,8 @@
 #!/bin/bash
 
 if [ "$#" -lt 1 ]; then
-    echo "Usage: create_cpp_project.sh <project_name> [class_name...]"
-    exit 1
+	echo "Usage: create_cpp_project.sh <project_name> [class_name...]"
+	exit 1
 fi
 
 PROJECT_NAME=$1
@@ -17,7 +17,7 @@ mkdir includes srcs
 touch srcs/main.cpp
 for CLASS_NAME in "$@"
 do
-    # Create .h file
+	# Create .h file
 	cat << EOF > includes/$CLASS_NAME.h
 #ifndef ${CLASS_NAME}_H
 # define ${CLASS_NAME}_H
@@ -26,7 +26,7 @@ do
 
 #endif
 EOF
-    # Create .hpp file
+	# Create .hpp file
 	cat << EOF > includes/$CLASS_NAME.hpp
 #ifndef ${CLASS_NAME}_HPP
 # define ${CLASS_NAME}_HPP
@@ -36,17 +36,17 @@ EOF
 typedef std::string t_string;
 
 class $CLASS_NAME {
-    private:
+	private:
 
-    public:
-        $CLASS_NAME();
-        ~$CLASS_NAME();
-        $CLASS_NAME(const $CLASS_NAME& other);
-        $CLASS_NAME& operator=(const $CLASS_NAME& other);
+	public:
+		$CLASS_NAME();
+		~$CLASS_NAME();
+		$CLASS_NAME(const $CLASS_NAME& other);
+		$CLASS_NAME& operator=(const $CLASS_NAME& other);
 };
 #endif
 EOF
-    # Create .cpp file
+	# Create .cpp file
 	cat << EOF > srcs/$CLASS_NAME.cpp
 #include <$CLASS_NAME.h>
 
