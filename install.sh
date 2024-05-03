@@ -3,7 +3,7 @@
 # Navigate to the root directory
 cd ~
 
-# Create a hidden directory named .cpp_gen
+# Create a hidden directory named cpp_gen
 git clone https://github.com/goncalo1021pt/cpp_gen.git cpp_gen
 
 mv cpp_gen/cpp_gen .local/bin
