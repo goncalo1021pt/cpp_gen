@@ -6,15 +6,9 @@
 
 Follow these steps to install `cpp_gen`:
 
-1. Run the following command in your terminal:
+Run the following command in your terminal:
     ```bash
     curl -sSL https://raw.githubusercontent.com/goncalo1021pt/cpp_gen/main/install.sh | bash
-    ```
-2. Source your shell configuration file:
-    ```bash
-    source ~/.zshrc
-    or
-    source ~/.bashrc
     ```
 
 ## Usage
