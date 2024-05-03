@@ -4,7 +4,7 @@
 cd ~
 
 # Create a hidden directory named .cpp_gen
-git clone https://github.com/goncalo1021pt/cpp_gen.git
+git clone https://github.com/goncalo1021pt/cpp_gen.git .cpp_gen
 
 # Add .cpp_gen to the PATH environment variable
 if [ -f ~/.bashrc ]; then
