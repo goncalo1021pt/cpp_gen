@@ -18,5 +18,10 @@ fi
 rm -f .cpp_gen/install.sh
 
 # Source the .bashrc to reflect the changes
-source ~/.bashrc
-source ~/.zshrc
+if [ -f ~/.bashrc ]; then
+    source ~/.bashrc
+fi
+
+if [ -f ~/.zshrc ]; then
+    source ~/.zshrc
+fi
