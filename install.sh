@@ -9,3 +9,4 @@ git clone https://github.com/goncalo1021pt/cpp_gen.git cpp_gen
 mv cpp_gen/cpp_gen .local/bin
 
 rm -f cpp_gen/install.sh
+rm -f README.md
