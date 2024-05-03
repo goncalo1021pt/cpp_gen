@@ -17,11 +17,9 @@ fi
 
 rm -f .cpp_gen/install.sh
 
-# Source the .bashrc to reflect the changes
-if [ -f ~/.bashrc ]; then
+# Source the .bashrc or .zshrc to reflect the changes
+if [ "$SHELL" = "/bin/bash" ] && [ -f ~/.bashrc ]; then
     source ~/.bashrc
-fi
-
-if [ -f ~/.zshrc ]; then
+elif [ "$SHELL" = "/bin/zsh" ] && [ -f ~/.zshrc ]; then
     source ~/.zshrc
 fi
