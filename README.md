@@ -13,7 +13,7 @@ curl -sSL https://raw.githubusercontent.com/goncalo1021pt/cpp_gen/main/install.s
 
 ## Usage
 
-After installation, you can use `cpp_gen` to generate a new cpp project on your corrent directory. Here's an example:
+After installation, you can use `cpp_gen` to generate a new cpp project on your current directory. Here's an example:
 
 ```bash
 cpp_gen my_new_project
