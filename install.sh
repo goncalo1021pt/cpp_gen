@@ -7,12 +7,12 @@ cd ~
 git clone https://github.com/goncalo1021pt/cpp_gen.git .cpp_gen
 
 # Add .cpp_gen to the PATH environment variable
-if [ -f ~/.bashrc ]; then
-	echo 'export PATH=$PATH:$HOME/.cpp_gen' >> ~/.bashrc
+if [ -f ~/.bashrc ] && ! grep -q 'export PATH=$PATH:$HOME/.cpp_gen' ~/.bashrc; then
+    echo 'export PATH=$PATH:$HOME/.cpp_gen' >> ~/.bashrc
 fi
 
-if [ -f ~/.zshrc ]; then
-	echo 'export PATH=$PATH:$HOME/.cpp_gen' >> ~/.zshrc
+if [ -f ~/.zshrc ] && ! grep -q 'export PATH=$PATH:$HOME/.cpp_gen' ~/.zshrc; then
+    echo 'export PATH=$PATH:$HOME/.cpp_gen' >> ~/.zshrc
 fi
 
 rm -f .cpp_gen/install.sh
