@@ -9,7 +9,7 @@ PROJECT_NAME=$1
 shift
 mkdir $PROJECT_NAME && cd $PROJECT_NAME
 
-cp /home/goncalo1021pt/scripts/Makefile .
+cp ~/.cpp_gen/Makefile .
 sed -i "s/NAME =/NAME = $PROJECT_NAME/" Makefile
 
 mkdir includes srcs 
