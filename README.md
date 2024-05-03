@@ -10,6 +10,8 @@ Run the following command in your terminal:
 ```bash
 curl -sSL https://raw.githubusercontent.com/goncalo1021pt/cpp_gen/main/install.sh | bash
 ```
+After the installation you can change the Makefile in the `~/cpp_gen` directory to your liking.
+Just make sure to keep the NAME variable as it is, since it is used to generate the project name.
 
 ## Usage
 
