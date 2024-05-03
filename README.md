@@ -10,10 +10,6 @@ Follow these steps to install `cpp_gen`:
     ```bash
     curl -sSL https://raw.githubusercontent.com/goncalo1021pt/cpp_gen/main/install.sh | bash
     ```
-2. Restart your terminal or source your bashrc file for the changes to take effect:
-    ```bash
-    source ~/.bashrc
-    ```
 
 ## Usage
 
