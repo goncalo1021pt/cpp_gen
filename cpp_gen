@@ -18,7 +18,6 @@ touch srcs/main.cpp
 for CLASS_NAME in "$@"
 do
     # Create .h file
-	echo $CLASS_NAME
 	cat << EOF > includes/$CLASS_NAME.h
 #ifndef ${CLASS_NAME}_H
 # define ${CLASS_NAME}_H
