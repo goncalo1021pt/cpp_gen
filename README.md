@@ -1,6 +1,6 @@
 # cpp_gen
 
-`cpp_gen` is a 42 cpp project generator. It helps you to quickly set up a new cpp project with a standard structure and files.
+`cpp_gen` is a 42 cpp project generator. It helps you to quickly set up a new cpp project with classes in orthodox canonical form.
 
 ## Installation
 
@@ -15,7 +15,9 @@ Just make sure to keep the NAME variable as it is, since it is used to generate 
 
 ## Usage
 
-After installation, you can use `cpp_gen` to generate a new cpp project on your current directory. Here's an example:
+After installation, you can use `cpp_gen.sh` to generate a new cpp project on your current directory. 
+If the program only has 1 argument it will create the project. All other aguments will be classes of that program.
+Here's an example:
 
 ```bash
-cpp_gen my_new_project
+cpp_gen.sh my_new_project optional_class1 optional_class2

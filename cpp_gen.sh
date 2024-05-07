@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$#" -lt 1 ]; then
-	echo "Usage: create_cpp_project.sh <project_name> [class_name...]"
+	echo "Usage: cpp_gen.sh <project_name> [class_name...]"
 	exit 1
 fi
 
@@ -22,7 +22,7 @@ do
 #ifndef ${CLASS_NAME}_H
 # define ${CLASS_NAME}_H
 
-# include <$CLASS_NAME.hpp>
+# include \"$CLASS_NAME.hpp\"
 
 #endif
 EOF
@@ -48,7 +48,7 @@ class $CLASS_NAME {
 EOF
 	# Create .cpp file
 	cat << EOF > srcs/$CLASS_NAME.cpp
-#include <$CLASS_NAME.h>
+#include \"$CLASS_NAME.h\"
 
 $CLASS_NAME::$CLASS_NAME() {}
 
@@ -65,7 +65,7 @@ $CLASS_NAME& $CLASS_NAME::operator=(const $CLASS_NAME& other) {
 EOF
 
 	# Add includes to main.cpp
-	echo "#include <$CLASS_NAME.h>" >> srcs/main.cpp
+	echo "#include \"$CLASS_NAME.h\"" >> srcs/main.cpp
 done
 
 # Add main function to main.cpp
