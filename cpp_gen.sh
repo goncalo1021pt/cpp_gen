@@ -5,8 +5,34 @@ if [ "$#" -lt 1 ]; then
 	exit 1
 fi
 
-PROJECT_NAME=$1
-mkdir $PROJECT_NAME && cd $PROJECT_NAME
+if [ -d $1 ]; then
+	echo "Error: Directory $1 already exists"
+	exit 1
+fi
+
+if [ -d ~/cpp_gen ]; then
+	echo "Error: Directory ~/cpp_gen already exists do you want to overwrite it? (y/n)"
+	read -r response
+	if [ "$response" != "y" ]; then
+		exit 1
+	fi
+fi
+
+if [ ! -d ~/.local/bin ]; then
+	echo "Error: Directory ~/.local/bin does not exist"
+	exit 1
+fi
+
+if [ -f ~/.local/bin/cpp_gen ]; then
+	echo "Error: File ~/.local/bin/cpp_gen already exists do you want to overwrite it? (y/n)"
+	read -r response
+	if [ "$response" != "y" ]; then
+		exit 1
+	fi
+fi
+
+PROJECT_NAME="$1"
+mkdir "$PROJECT_NAME" && cd "$PROJECT_NAME"
 cp ~/cpp_gen/Makefile .
 sed -i "s/NAME =/NAME = $PROJECT_NAME/" Makefile
 shift
@@ -50,9 +76,13 @@ EOF
 	cat << EOF > srcs/$CLASS_NAME.cpp
 #include \"$CLASS_NAME.h\"
 
-$CLASS_NAME::$CLASS_NAME() {}
+$CLASS_NAME::$CLASS_NAME() {
+	std::cout << "Default constructor called" << std::endl;
+}
 
-$CLASS_NAME::~$CLASS_NAME() {}
+$CLASS_NAME::~$CLASS_NAME() {
+	std::cout << "Destructor called" << std::endl;
+}
 
 $CLASS_NAME::$CLASS_NAME(const $CLASS_NAME& other) {
 	*this = other;
