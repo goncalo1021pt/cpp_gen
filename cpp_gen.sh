@@ -10,27 +10,6 @@ if [ -d $1 ]; then
 	exit 1
 fi
 
-if [ -d ~/cpp_gen ]; then
-	echo "Error: Directory ~/cpp_gen already exists do you want to overwrite it? (y/n)"
-	read -r response
-	if [ "$response" != "y" ]; then
-		exit 1
-	fi
-fi
-
-if [ ! -d ~/.local/bin ]; then
-	echo "Error: Directory ~/.local/bin does not exist"
-	exit 1
-fi
-
-if [ -f ~/.local/bin/cpp_gen ]; then
-	echo "Error: File ~/.local/bin/cpp_gen already exists do you want to overwrite it? (y/n)"
-	read -r response
-	if [ "$response" != "y" ]; then
-		exit 1
-	fi
-fi
-
 PROJECT_NAME="$1"
 mkdir "$PROJECT_NAME" && cd "$PROJECT_NAME"
 cp ~/cpp_gen/Makefile .
