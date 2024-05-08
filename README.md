@@ -8,7 +8,7 @@ Follow these steps to install `cpp_gen`:
 
 Run the following command in your terminal:
 ```bash
-curl -sSL https://raw.githubusercontent.com/goncalo1021pt/cpp_gen/main/install.sh | bash
+curl -sSL https://github.com/goncalo1021pt/cpp_gen/blob/main/install.sh | bash
 ```
 After running the command, verify that the local bin directory is in your PATH. This is necessary so that you can run the cpp_gen.sh script from any directory. If it is not, add the following line to your .bashrc or .zshrc file:
 ```bash
