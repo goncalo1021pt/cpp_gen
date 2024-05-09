@@ -46,8 +46,8 @@ class $CLASS_NAME {
 	public:
 		$CLASS_NAME();
 		~$CLASS_NAME();
-		$CLASS_NAME(const $CLASS_NAME& other);
-		$CLASS_NAME& operator=(const $CLASS_NAME& other);
+		$CLASS_NAME(const $CLASS_NAME &other);
+		$CLASS_NAME &operator=(const $CLASS_NAME &other);
 };
 #endif
 EOF
@@ -63,11 +63,11 @@ $CLASS_NAME::~$CLASS_NAME() {
 	std::cout << "Destructor called" << std::endl;
 }
 
-$CLASS_NAME::$CLASS_NAME(const $CLASS_NAME& other) {
+$CLASS_NAME::$CLASS_NAME(const $CLASS_NAME &other) {
 	*this = other;
 }
 
-$CLASS_NAME& $CLASS_NAME::operator=(const $CLASS_NAME& other) {
+$CLASS_NAME &$CLASS_NAME::operator=(const $CLASS_NAME &other) {
 	(void)other;
 	return *this;
 }
