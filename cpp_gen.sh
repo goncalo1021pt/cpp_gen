@@ -27,7 +27,7 @@ do
 #ifndef ${CLASS_NAME}_H
 # define ${CLASS_NAME}_H
 
-# include \"$CLASS_NAME.hpp\"
+# include "$CLASS_NAME.hpp"
 
 #endif
 EOF
@@ -53,7 +53,7 @@ class $CLASS_NAME {
 EOF
 	# Create .cpp file
 	cat << EOF > srcs/$CLASS_NAME.cpp
-#include \"$CLASS_NAME.h\"
+#include "$CLASS_NAME.h"
 
 $CLASS_NAME::$CLASS_NAME() {
 	std::cout << "Default constructor called" << std::endl;
