@@ -1,8 +1,9 @@
 NAME =
+
 SRCS = $(wildcard srcs/*.cpp)
 
 RM = rm -f
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 
 SFLAGS = -fsanitize=address
 CXX = c++
 INCLUDES = -I includes
@@ -20,7 +21,21 @@ BLUE = \033[0;34m
 ORANGE = \033[0;33m
 NC = \033[0m 
 
+CN = DefaultClass
+
 all: $(NAME)
+
+clean:
+	@$(RM) -r $(OBJS_DIR)
+	@$(RM) -r $(OBJS_DIR_S)
+	@echo "$(RED)$(NAME)$(NC)OBJS cleaned!"
+
+fclean: clean
+	@$(RM) $(NAME)
+	@$(RM) $(BONUS_NAME)
+	@echo "$(RED)$(NAME)$(NC)cleaned!"
+
+re: fclean all
 
 $(OBJS_DIR)/%.o: srcs/%.cpp $(HDRS)
 	@mkdir -p $(dir $@)
@@ -40,16 +55,6 @@ s: fclean $(SOBJS)
 	@$(CXX) $(CXXFLAGS) $(SFLAGS) -o $(NAME) $(SOBJS) 
 	@echo "$(GREEN)$(NAME)$(NC) ready!"
 
-clean:
-	@$(RM) -r $(OBJS_DIR)
-	@$(RM) -r $(OBJS_DIR_S)
-	@echo "$(RED)$(NAME)$(NC)OBJS cleaned!"
-
-fclean: clean
-	@$(RM) $(NAME)
-	@$(RM) $(BONUS_NAME)
-	@echo "$(RED)$(NAME)$(NC)cleaned!"
-
 v: 
 	make re && valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes ./$(NAME)
 
@@ -62,6 +67,41 @@ send:
 run: all
 	./$(NAME) 
 
-re: fclean all
+class:
+	@echo "Creating class $(CN)"
+	@echo "#ifndef $(CN)_HPP" > includes/$(CN).hpp
+	@echo "#define $(CN)_HPP" >> includes/$(CN).hpp
+	@echo "" >> includes/$(CN).hpp
+	@echo "class $(CN) {" >> includes/$(CN).hpp
+	@echo "	private:" >> includes/$(CN).hpp
+	@echo "" >> includes/$(CN).hpp
+	@echo "	public:" >> includes/$(CN).hpp
+	@echo "		$(CN)();" >> includes/$(CN).hpp
+	@echo "		$(CN)(const $(CN)& src);" >> includes/$(CN).hpp
+	@echo "		~$(CN)();" >> includes/$(CN).hpp
+	@echo "		$(CN) &operator=(const $(CN)& src);" >> includes/$(CN).hpp
+	@echo "};" >> includes/$(CN).hpp
+	@echo "#endif" >> includes/$(CN).hpp
+	@echo "#ifndef $(CN)_H" > includes/$(CN).h
+	@echo "# define $(CN)_H" >> includes/$(CN).h
+	@echo "" >> includes/$(CN).h
+	@echo "# include \"$(CN).hpp\"" >> includes/$(CN).h
+	@echo "" >> includes/$(CN).h
+	@echo "#endif" >> includes/$(CN).h
+	@echo "#include \"$(CN).hpp\"" > srcs/$(CN).cpp
+	@echo "" >> srcs/$(CN).cpp
+	@echo "$(CN)::$(CN)() {}" >> srcs/$(CN).cpp
+	@echo "" >> srcs/$(CN).cpp
+	@echo "$(CN)::$(CN)(const $(CN) &src) {" >> srcs/$(CN).cpp
+	@echo "*this = src;" >> srcs/$(CN).cpp 
+	@echo "}" >> srcs/$(CN).cpp
+	@echo "" >> srcs/$(CN).cpp
+	@echo "$(CN)::~$(CN)() {}" >> srcs/$(CN).cpp
+	@echo "" >> srcs/$(CN).cpp
+	@echo "$(CN)& $(CN)::operator=(const $(CN) &src) {" >> srcs/$(CN).cpp
+	@echo "	(void)src;" >> srcs/$(CN).cpp
+	@echo "	return *this;" >> srcs/$(CN).cpp
+	@echo "}" >> srcs/$(CN).cpp
+	
 
 .PHONY: all fclean clean re v s fcount send run
